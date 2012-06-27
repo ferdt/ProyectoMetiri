@@ -1,21 +1,23 @@
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="style/facebook.css" />
 </head>
 <body>
-
+<h1>Add User</h1>
 <?php
-
+	if (isset($_GET['id'])) {
+		header("Location: user.php"."?id=");
+	exit;
+}
 if (!isset($_POST['username'])) {
 // form not submitted
 ?>
+
 <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
-
-Username: <input type="text" name="username" size="65"> <br>
-Password: <input type="text" name="password" size="65"> <br>
-Email: <input type="text" name="email" size="65"> <br>
-
+Username: <input type="text" name="username" size="25"> <br>
+Password: <input type="text" name="password" size="25"> <br>
+Email: <input type="text" name="email" size="25"> <br>
 <input type="submit" value="Add user">
-
 </form>
 
 <?php
@@ -56,7 +58,8 @@ echo "<br />";
   
 $query  = 'SELECT * FROM users';
 $result = mysqli_query($ms,$query);
-    
+
+   
   if (mysqli_num_rows($result) > 0) {
     echo "<table>";
 	echo "<tr>";
@@ -64,9 +67,9 @@ $result = mysqli_query($ms,$query);
 	echo "</tr>";
     while($row = mysqli_fetch_row($result)) {
         echo "<td>".$row[1]."</td>";
-        echo "<td>" . $row[2]."</td>";
+        echo "<td>".$row[2]."</td>";
         echo "<td>".$row[3]."</td>";
-		echo "<td><a href=".$_SERVER['PHP_SELF']."?id=".$row[0].">Delete</a>";
+		echo "<td><a href=".user."?id=".$row[0].">View</a>";
         echo "</tr>";
     }
     echo "</table>";
@@ -75,13 +78,8 @@ else {
     echo "No rows found!";
 }
 
-	if (isset($_GET['id'])) {
-// create query to delete record
-    $query = "DELETE FROM symbols WHERE id = ".$_GET['id'];
-// execute query
-    $result=mysqli_query($ms,$query); 
 }
-}
+
 ?>
 
 
