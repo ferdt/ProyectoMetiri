@@ -29,10 +29,9 @@ $result = mysqli_query($ms,$query);
 	echo "<td><b>User</b></td><td><b>Password</b></td><td><b>Email</b></td>";
 	echo "</tr>";
     while($row = mysqli_fetch_row($result)) {
-        echo "<td>".$row[1]."</td>";
+        echo "<td><a href="."user.php"."?id=".$row[0].">".$row[1]."</a></td>";
         echo "<td>" . $row[2]."</td>";
         echo "<td>".$row[3]."</td>";
-		echo "<td><a href="."user.php"."?id=".$row[0].">View</a>";
         echo "</tr>";
     }
     echo "</table>";
