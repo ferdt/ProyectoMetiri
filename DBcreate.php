@@ -1,19 +1,19 @@
 <?php
 include ("DBConfig.php");
-//Connect to MySQL
-mysql_connect('host', 'database', 'password') or die (mysql_error());
-//Select database
-mysql_select_db('database') or die (mysql_error());
+// Connect to MySQL
+// mysql_connect('host', 'database', 'password') or die (mysql_error());
+// Select database
+// mysql_select_db('database') or die (mysql_error());
 //Create the table users
 mysql_query("create table users(
    userID int(8) NOT NULL, 
    username varchar(65) NOT NULL,
    password varchar(20) NOT NULL, 
-   email varchar(65) NOTNULL,
-   PRIMARY KEY (userID)
-)") or die (mysql_error());
+   email varchar(65) NOT NULL,
+   PRIMARY KEY userID
+)"); //or die (mysql_error());
 //Show "Complete" if everything works
-echo "Table `users` created.";
+echo "Table `users` created."."<br>";
 
 //Create the table tracks
 mysql_query("create table tracks(
@@ -27,7 +27,7 @@ mysql_query("create table tracks(
    PRIMARY KEY (ID)
 )") or die (mysql_error());
 //Show "Complete" if everything works
-echo "Table `tracks` created.";
+echo "Table `tracks` created."."<br>";
 
 //Create the table vehicles
 mysql_query("create table vehicles(
@@ -40,7 +40,7 @@ mysql_query("create table vehicles(
    PRIMARY KEY (ID)
 )") or die (mysql_error());
 //Show "Complete" if everything works
-echo "Table `vehicles` created.";
+echo "Table `vehicles` created."."<br>";
 
 //Create the table laps
 mysql_query("create table laps(
@@ -55,7 +55,7 @@ mysql_query("create table laps(
    PRIMARY KEY (LapID)
 )") or die (mysql_error());
 //Show "Complete" if everything works
-echo "Table `laps` created.";
+echo "Table `laps` created."."<br>";
 
 
 ?>
