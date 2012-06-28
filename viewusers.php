@@ -6,6 +6,7 @@
 <?php
 include ("Header.php");
 ?>
+<div id='page-wrap'>
 <h1>List of users</h1>
 <p>These are the users present in DB</p>
 <?php
@@ -36,7 +37,7 @@ else {
 
 ?>
 
-
+</div>
 </body>
 
 </html>

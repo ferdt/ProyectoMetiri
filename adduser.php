@@ -1,9 +1,14 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="style/facebook.css" />
+<link rel="stylesheet" type="text/css" href="style/basic1.css" />
 </head>
 <body>
+<?php
+include ("Header.php");
+?>
+<div id='page-wrap'>
 <h1>Add User</h1>
+</br>
 <?php
 	if (isset($_GET['id'])) {
 		header("Location: user.php"."?id=");
@@ -72,7 +77,7 @@ else {
 
 ?>
 
-
+</div>
 </body>
 
 </html>
