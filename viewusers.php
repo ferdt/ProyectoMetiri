@@ -7,18 +7,7 @@
 <p>These are the users present in DB</p>
 <?php
 
-// Connect to DB
-  $host = "localhost";
-  $user = "root";
-  $pass = "";
-  $db = "Metiri";
-  
-  $ms = mysqli_connect($host, $user, $pass, $db);
-  if ( !$ms )
-  {
-    echo "Error connecting to database.\n";
-  }
-
+include ("DBConfig.php");
   
 $query  = 'SELECT * FROM users';
 $result = mysqli_query($ms,$query);
@@ -39,8 +28,6 @@ $result = mysqli_query($ms,$query);
 else {
     echo "No rows found!";
 	}
-
-
 
 ?>
 

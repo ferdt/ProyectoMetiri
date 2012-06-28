@@ -28,17 +28,7 @@ $username	=$_POST['username'];
 $password	=$_POST['password'];
 $email		=$_POST['email'];
 
-// Connect to DB
-  $host = "localhost";
-  $user = "root";
-  $pass = "";
-  $db = "Metiri";
-  
-  $ms = mysqli_connect($host, $user, $pass, $db);
-  if ( !$ms )
-  {
-    echo "Error connecting to database.\n";
-  }
+include ("DBConfig.php");
 
 //Insert data
   $add = "INSERT INTO `Users` (`username`,`password`,`email`) "
