@@ -10,7 +10,6 @@
   {
     echo "Error connecting to database.\n";
   }
-
   // Then you need to make sure the database you want
   // is selected.
   mysql_select_db($db);

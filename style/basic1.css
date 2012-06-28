@@ -1,0 +1,48 @@
+body {
+    /* navegadores sin soporte */
+    /*background: black url(images/cabecera_degradado.jpg) repeat-x;
+    /* Safari 4-5, Chrome 1-9 */
+    /*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(black));
+    /* Safari 5.1+, Chrome 10+ */
+	/*background-image:url('images/motos.jpg');
+    /*background: -webkit-linear-gradient(top, #eaeaea, white);
+    /* Firefox 3.6+ */
+    /*background: -moz-linear-gradient(top, black, white);
+    /* Opera 11.10+ */
+    /*background: -o-linear-background(top, black, white);
+    /* IE 10 */
+    /*background: -ms-linear-background(top, black, white);
+    /* estándar */
+    /*background: linear-background(top, black, white); */
+	background:url(images/250b&w.jpg) no-repeat center center fixed; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+	}
+* { margin: 0; padding: 0; }
+		
+		#page-wrap { width: 600px; margin: 50px auto; padding: 20px; background: white; -moz-box-shadow: 0 0 10px black; -webkit-box-shadow: 0 0 5px black; box-shadow: 0 0 5px black; }
+		p { font: 15px/2 Georgia, Serif; margin: 0 0 30px 0; text-indent: 40px; }
+
+h1{font-family:"Arial";font-size:24px;color:white;text-align:left;text-shadow: 1px 1px 4px black}
+h2{font-family:"Arial";font-size:20px;color:black;text-align:left;}
+p{font-family:"Cambria";font-size:16px;}
+a{font-family:"Cambria";font-size:16px;color:green}
+li{font-family:"Cambria";font-size:16px;}
+
+.ListTable { width:550px;border-collapse:collapse;background-color:#98FB98; }
+.ListTable td, .ListTable th { border:2px solid #47ae32;padding:5px; }
+.ListTable th { font:bold 14px/1.1em Arial, Helvetica, sans-serif;text-shadow: 1px 1px 4px black; letter-spacing:0.2em; background-color:#47ae32; color:#98FB98; }
+.ListTable td { font:normal 12px/1.5em Goudy, Georgia, serif;color:#47ae32; }
+.ListTable td a { color:#006400;text-decoration:none; }
+.ListTable td a:hover { color:#FF4500;text-decoration:underline; }
+.ListTable td a:visited { color:#006400; }
+
+.Header { width:550px;border-collapse:collapse;background-color:#98FB98; }
+.Header td, .Header th { border:2px solid #47ae32;padding:5px; }
+.Header th { font:bold 16px/1.1em Arial, Helvetica, sans-serif;text-shadow: 1px 1px 2px black; letter-spacing:0.2em; background-color:#47ae32; color:#98FB98; text-align:left;}
+.Header td { font:normal 12px/1.5em Goudy, Georgia, serif;color:#47ae32; }
+.Header th a { color:#98FB98;text-decoration:none; }
+.Header th a:hover { color:#98FB98;text-decoration:none; }
+.Header th a:visited { color:#98FB98; }
