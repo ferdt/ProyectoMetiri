@@ -1,29 +1,34 @@
 <html>
- 
-<head>
-
-<?php
-
-include("header.php")
-?>
-<title>Proyecto Metiri: Start</title>
-<link rel="stylesheet" type="text/css" href="style/basic1.css" />
+ <head>
+<table class='header'>
+<tr>
+<th><a href=inicio.php>Home</a></th>
+</tr>
+</table>
+   
+<title>Proyecto Metiri: Home</title>
+<link rel="stylesheet" type="text/css" href="style/home1.css" />
 </head>
 <body>
 
 <div id="page-wrap">
-<h1>Proyecto Metiri</h1>
-<h2>Start</h2>
-<u1>
-<li><a href="viewusers.php">List Users</a></li>
-<li><a href="adduser.php">Add User</a></li>
-<li>Create Car</li>
-<li>Create Car model</li>
-<li>Create Track</li>
-<li><a href="upload.php">Upload file</a></li>
-</u1>
-<p></p>
+<h1>Log in</h1>
+
+<p>
+<form action="login.php" method="post">
+<table><tr>
+	<td>username: &nbsp; </td><td> <input type="text" name="name"></td></tr>
+    <tr><td>password: &nbsp; </td><td> <input type="password" name="pwd"></td></tr>
+</table>
+<br>
+    <button class="normal" type="submit">Log in</button>
+</form>
+</p>
+<p>
+Or <a href="signup.php">Sign up</a>
+</p><p>
 <?php echo(date("l F d, Y")); ?>
+</p>
 </div>
 </body>
 </html> 

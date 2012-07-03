@@ -64,7 +64,7 @@ $result = mysqli_query($ms,$query);
         echo "<td>".$row[1]."</td>";
         echo "<td>".$row[2]."</td>";
         echo "<td>".$row[3]."</td>";
-		echo "<td><a href=".user."?id=".$row[0].">View</a>";
+		echo "<td><a href=user.php?id=".$row[0].">View</a>";
         echo "</tr>";
     }
     echo "</table>";

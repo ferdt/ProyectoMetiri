@@ -11,7 +11,7 @@ mysql_query("create table users(
    password varchar(20) NOT NULL, 
    email varchar(65) NOT NULL,
    PRIMARY KEY userID
-)"); //or die (mysql_error());
+)"); or die (mysql_error());
 //Show "Complete" if everything works
 echo "Table `users` created."."<br>";
 
@@ -49,6 +49,7 @@ mysql_query("create table laps(
    TrackID int(8) NOT NULL,
    Time float(6,2) NOT NULL,
    CarID int(8) NOT NULL,
+   Timestamp timestamp NOT NULL,
    SessionID int(12) NOT NULL,
    Lapnumber int(3) NOT NULL,
    GPS bit(1) NOT NULL,
