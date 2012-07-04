@@ -1,3 +1,4 @@
+<?php include('sessioncontrol.php'); ?>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style/basic1.css" />
@@ -5,7 +6,6 @@
 <body>
 
 <?php
-include ('accesscontrol.php');
 include_once ('DBConfig.php');
 include ('header.php');
 echo "<div id='page-wrap'>";

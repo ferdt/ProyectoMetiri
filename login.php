@@ -1,14 +1,11 @@
+<?php session_start(); ?>
 <html>
- 
 <head>
-
 <table class='header'>
 <tr>
 <th><a href=inicio.php>Home</a></th>
-
 </tr>
-   </table>
-   
+</table>
 <title>Proyecto Metiri: Home</title>
 <link rel="stylesheet" type="text/css" href="style/home1.css" />
 </head>
@@ -18,39 +15,27 @@
 
 <?php 
 include_once("dbconfig.php"); 
-session_start();
-
 $uname = $_POST['name'];
-$pass = $_POST['pwd'];
+$pass = $_POST['pass'];
+$query = "SELECT * FROM users WHERE(
+	username='".$uname."' AND  password=password('".$pass."'))";
  
-echo $uname;
-echo "<br>";
-echo $pass;
-echo "<br>";
-
-$query = "SELECT count(*) FROM users WHERE(
-username='".$uname."' AND  password='".$pass."')";
- 
-//$query = mysql_query($sql);
-echo $query;
-echo "<br>";
 $result = mysqli_query($ms,$query);
-$result = mysqli_fetch_row($result);
-echo "<br>".$result."<br>";
-if($result[0]>0)	{
+
+if(mysqli_num_rows($result) > 0)	{
+	$result = mysqli_fetch_row($result);
     echo "Successful Login!";
-    $_SESSION['uid'] = $uname;
-	$_SESSION['pwd'] = $pass;
+    $_SESSION['uid'] = $result[0];
+	$_SESSION['uname'] = $result[1];
+	$_SESSION['pass'] = $result[2];
     echo "<br />Welcome ".$_SESSION['uid']."!";
-    echo "<br /><a href='signupform.php'>SignUp</a>";
-    echo "<br /><a href='signinform.php'>SignIn</a>";
-    echo "<br /><a href='logout.php'>LogOut</a>";
+	//sleep(10);
+	header('Location: home.php');
 } else {
-	echo "Login Failed";
-    echo "<br /><a href='signupform.php'>SignUp</a>";
-    echo "<br /><a href='signinform.php'>SignIn</a>";
+	echo "<h1>Login Failed</h1>";
+    echo "<br /><a href='inicio.php'>Try again</a>";
+    echo "<br /><a href='signup.php'>Sign Up</a>";
 }
-header('Location: home.php')
 ?>
 </div>
 </body>
