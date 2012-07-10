@@ -18,8 +18,8 @@ include_once("dbconfig.php");
 $uname = $_POST['name'];
 $pass = $_POST['pass'];
 $query = "SELECT * FROM users WHERE(
-	username='".$uname."' AND  password=password('".$pass."'))";
- 
+	name='".$uname."' AND  password=password('".$pass."'))";
+//echo $query;
 $result = mysqli_query($ms,$query);
 
 if(mysqli_num_rows($result) > 0)	{

@@ -42,8 +42,8 @@ li{font-family:"Cambria";color:#ababab;font-size:16px;}
 
 .Header { width:100%;border-collapse:collapse;background-color:#98FB98; }
 .Header td, .Header th { border:2px solid #47ae32;padding:5px; }
-.Header th {text-shadow: 1px 1px 2px black; background-color:#47ae32; color:#98FB98; text-align:left;}
-.Header th a {font-family:Tahoma; font-size:20px; color:#98FB98;text-decoration:none; }
+.Header th {background-color:#47ae32; color:#98FB98; text-align:left;}
+.Header th a {font-family:Tahoma; font-size:16px; color:#98FB98;text-decoration:none; }
 .Header th a:hover { color:#98FB98;text-decoration:none; }
 .Header th a:visited { color:#98FB98; }
 

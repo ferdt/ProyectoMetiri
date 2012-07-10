@@ -1,21 +1,15 @@
-
-
-
 <?php // signup.php
-include 'dbconfig.php';
+include_once 'dbconfig.php';
 if (!isset($_POST['submitok'])){
 // Display the user signup form
 ?>
-
 <html >
 <head>
-  <table class='header'>
+<table class='header'>
 <tr>
 <th><a href=inicio.php>Home</a></th>
-
 </tr>
-   </table>
-   
+</table>
 <title>Proyecto Metiri: Home</title>
 <link rel="stylesheet" type="text/css" href="style/home1.css" />
 </head>
@@ -30,7 +24,7 @@ if (!isset($_POST['submitok'])){
           <p>User name</p>
         </td>
         <td>
-          <input name="newid" type="text" maxlength="100" size="25" />
+          <input name="newname" type="text" maxlength="100" size="25" />
          <font color="orangered" size="+1"><tt><b>*</b></tt></font>
        </td>
     </tr>
@@ -49,7 +43,7 @@ if (!isset($_POST['submitok'])){
         <p>Password</p>
       </td>
       <td>
-        <input name="newpass" type="text" maxlength="100" size="25" />
+        <input name="newpass" type="password" maxlength="100" size="25" />
         <font color="orangered" size="+1"><tt><b>*</b></tt></font>
       </td>
     </tr>
@@ -71,25 +65,29 @@ if (!isset($_POST['submitok'])){
 }
 else{
 // Process signup submission
-//dbConnect('users');
+// echo "Form submitted"."<br>";
+// echo $_POST['newname']."<br>";
+// echo $_POST['newemail']."<br>";
+// echo $_POST['newpass']."<br>";
 
- if ($_POST['newid']=='' or $_POST['newname']==''
-or $_POST['newemail']=='') {
+if ($_POST['newname']=='' OR $_POST['newpass']=='' OR $_POST['newemail']=='') {
 echo('One or more required fields were left blank.\\n'.
 'Please fill them in and try again.');
 }
 
  // Check for existing user with the new id
-$sql = "SELECT COUNT(*) FROM users WHERE username = '$_POST[newid]'";
+$sql = "SELECT COUNT(*) FROM users WHERE name = '$_POST[newname]'";
 $result = mysqli_query($ms,$sql);
 if (!$result) {
 echo('A database error occurred in processing your '.
 'submission.\\nIf this error persists, please '.
 'contact you@example.com.');
+exit;
 }
 if (@mysql_result($result,0,0)>0) {
 echo('A user already exists with your chosen userid.\\n'.
 'Please try another.');
+exit;
 }
 ?>
 <html>
@@ -109,5 +107,14 @@ page, and enter your new personal userid and password.</p>
 </html>
 
 <?php
+$name = $_POST['newname'];
+$email= $_POST['newemail'];
+$pass = $_POST['newpass'];
+
+  $add = "INSERT INTO `Users` (`name`,`password`,`email`) "
+        ."VALUES ('".$_POST['newname']."', "
+        ."PASSWORD('".$_POST['newpass']."'), "
+        ."'".$_POST['newemail']."')";
+  $r = mysqli_query($ms, $add);
 }
 ?>
