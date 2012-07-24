@@ -10,14 +10,22 @@ include_once ('dbconfig.php');
 include ('header.php');
 echo "<div id='page-wrap'>";
 $id = $_GET['id'];
-//User name
+//User name and flag
 $query  = "SELECT * FROM users WHERE userID = '$id'";
 $result = mysqli_query($ms,$query);
 if (mysqli_num_rows($result) > 0) {
 	$row = mysqli_fetch_row($result);
-	echo "<h1>".$row[1]."</h1>";
-	echo "<br>";
 }
+if (file_exists("img/flags/".$row[6].".gif")){
+	echo "<h1>"."<img src=img/flags/".$row[6].".gif height=17 border=1> ";
+}
+else {
+	echo "<h1> "."<img src=img/flags/00.gif width=25 height=17 border=1> ";
+}
+echo "";
+echo $row[1]."</h1>";
+echo "Registered on ".date('l dS \of F Y',strtotime($row[5]))."";
+echo "<br>";
 echo "<table width=550 border=0><td>";
 //User photo
 if (file_exists("userimg/".$id.".jpg")){
@@ -27,6 +35,7 @@ else {
 	echo "<img src=userimg/default.jpg width=150 height=150 border=1>";
 }
 echo "</td><td  valign='top'>";
+
 //User vehicles
 echo "<table>";
 echo "<h2>Vehicles</h2>";
@@ -44,6 +53,7 @@ if (mysqli_num_rows($cars) > 0) {
 		echo "</tr>";
 	}
 }
+
 //Achievements
 echo "<tr><td  valign='top'>";
 echo "<h2>Achievements</h2>";
@@ -75,6 +85,12 @@ else {
 	echo "<a href='unfollow.php?id=".$id."'><button class='normal'>Unfollow</button></a><br>";
 	echo "</form>";
 	}
+} else {
+	//echo "<form name='file' action='uploadphoto.php' method='post' enctype='multipart/form-data'>";
+	//echo "<input type='file' name='file' value='' />";
+	//echo "<input type='submit' value='upload' name='upload' />";
+	echo "<a href='changephoto.php'><button class='normal'>Change photo</button></a><br>";
+	//echo "</form>";
 }
 
 //Following
@@ -86,8 +102,8 @@ LIMIT 0 , 10";
 $result = mysqli_query($ms,$query);
 if (mysqli_num_rows($result) > 0) {
 	while($row = mysqli_fetch_row($result)) {
-		echo "<table  valign='center'><tr><td><h2>Following: </h2></td>";
-		echo "<td><a href="."following.php"."?id=".$id.">".$row[0]."</a></td>";
+		echo "<table  valign='center'>";//<tr><td><h2>Following: </h2></td>";
+		echo "<td><a href="."following.php"."?id=".$id.">Following: ".$row[0]."</a></td>";
 		echo "</tr>";
 	}
 } else {
@@ -105,8 +121,8 @@ $result = mysqli_query($ms,$query);
 
 if (mysqli_num_rows($result) > 0) {
 	while($row = mysqli_fetch_row($result)) {
-		echo "<table><tr><td><h2>Followers: </h2></td>";
-		echo "<td><a href="."followers.php"."?id=".$id.">".$row[0]."</a></td>";
+		echo "<table>";//<tr><td><h2>Followers: </h2></td>";
+		echo "<td><a href="."followers.php"."?id=".$id.">Followers: ".$row[0]."</a></td>";
 		echo "</tr>";
 	}
 } else {
@@ -129,7 +145,7 @@ if (mysqli_num_rows($tracks) > 0) {
 	$track = $row[1];
 	echo "<h2><a href="."track.php?id=".$trackID.">".$track."</a></h2>";
 	//Query laps on that track
-	$query  = "SELECT laps.sessionID,tracks.name,laps.time,vehicles.name,vehicles.class, laps.timestamp
+	$query  = "SELECT laps.sessionID,tracks.name,laps.time,vehicles.name,vehicles.class, laps.timestamp, laps.maxspeed, laps.gps
 	FROM (laps join tracks on laps.trackID = tracks.id)
 	join vehicles on laps.carID = vehicles.id
 	WHERE laps.userID = '$id' AND laps.trackID = '$trackID'
@@ -148,7 +164,9 @@ if (mysqli_num_rows($tracks) > 0) {
 		echo "<th>Time</th>
 			<th>Car</th>
 			<th>Class</th>
-			<th>TimeStamp</th>";
+			<th>Max Speed</th>
+			<th>Date</th>
+			<th>GPS</th>";
 		echo "</tr>";
 			
 		while($row = mysqli_fetch_row($result)) {
@@ -156,8 +174,9 @@ if (mysqli_num_rows($tracks) > 0) {
 			echo "<td>".$row[2]."</td>";
 			echo "<td>".$row[3]."</td>";
 			echo "<td>".$row[4]."</td>";
-			echo "<td>".$row[5]."</td>";
-			//echo "<td><a href="."user.php"."?id=".$row[0].">View</a>";
+			echo "<td>".number_format($row[6],1)."</td>";
+			echo "<td>".date('dS \of F Y',strtotime($row[5]))."</td>";
+			echo "<td>"."<img src=icons/GPS".$row[7].".gif width=20 height=20 border=0> ";
 			echo "</tr>";
 		}
 		echo "</table>";

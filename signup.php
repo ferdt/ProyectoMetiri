@@ -47,6 +47,35 @@ if (!isset($_POST['submitok'])){
         <font color="orangered" size="+1"><tt><b>*</b></tt></font>
       </td>
     </tr>
+	<tr>
+      <td align="right">
+        <p>Confirm password</p>
+      </td>
+      <td>
+        <input name="newpass2" type="password" maxlength="100" size="25" />
+        <font color="orangered" size="+1"><tt><b>*</b></tt></font>
+      </td>
+    </tr>
+	
+	<tr>
+      <td align="right">
+        <p>Country</p>
+      </td>
+      <td>
+	  
+		<?php
+		$query = "SELECT * FROM countries
+		ORDER BY name";
+		$result = mysqli_query($ms,$query);
+		echo "<select name='country'>";
+		while ($row = mysqli_fetch_array($result)) {
+			echo "<option value='". $row[0] ."'>". $row[1] . "</option>";
+		}
+		echo "</select>";
+		?>
+      </td>
+    </tr>
+	
     <tr>
       <td align="right" colspan="2">
         <hr noshade="noshade" />
@@ -77,18 +106,24 @@ echo('One or more required fields were left blank.\\n'.
 
  // Check for existing user with the new id
 $sql = "SELECT COUNT(*) FROM users WHERE name = '$_POST[newname]'";
+//echo $sql;
 $result = mysqli_query($ms,$sql);
-if (!$result) {
-echo('A database error occurred in processing your '.
-'submission.\\nIf this error persists, please '.
-'contact you@example.com.');
-exit;
-}
-if (@mysql_result($result,0,0)>0) {
-echo('A user already exists with your chosen userid.\\n'.
+$result = mysqli_fetch_row($result);
+$result = $result[0];
+
+if ($result>0) {
+echo('A user already exists with your chosen userid.<br>'.
 'Please try another.');
 exit;
 }
+
+// Check for passwords
+if ($_POST['newpass'] <> $_POST['newpass2']){
+echo('Password does not coincide.<br>'.
+'Please try again.');
+exit;
+}
+
 ?>
 <html>
 <head>
@@ -99,7 +134,7 @@ content="text/html; charset=iso-8859-1" />
 <body>
 <p><strong>User registration successful!</strong></p>
 <p>Your userid and password have been emailed to
-<strong><?=$_POST['newemail']?></strong>, the email address
+<strong><?=$_POST['newemail']?></strong> (mentira), the email address
 you just provided in your registration form. To log in,
 click <a href="index.php">here</a> to return to the login
 page, and enter your new personal userid and password.</p>
@@ -111,10 +146,13 @@ $name = $_POST['newname'];
 $email= $_POST['newemail'];
 $pass = $_POST['newpass'];
 
-  $add = "INSERT INTO `Users` (`name`,`password`,`email`) "
+  $add = "INSERT INTO `users` (`name`,`password`,`email`,`countryid`) "
         ."VALUES ('".$_POST['newname']."', "
         ."PASSWORD('".$_POST['newpass']."'), "
-        ."'".$_POST['newemail']."')";
+        ."'".$_POST['newemail']."',"
+		."'".$_POST['country']
+		."')";
   $r = mysqli_query($ms, $add);
+  echo $add;
 }
 ?>
